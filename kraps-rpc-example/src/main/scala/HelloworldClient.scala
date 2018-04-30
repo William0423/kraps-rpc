@@ -30,7 +30,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 object HelloworldClient {
 
   def main(args: Array[String]): Unit = {
-//    asyncCall()
+    asyncCall()
     syncCall()
   }
 
@@ -38,7 +38,12 @@ object HelloworldClient {
     val rpcConf = new RpcConf()
     val config = RpcEnvClientConfig(rpcConf, "hello-client")
     val rpcEnv: RpcEnv = NettyRpcEnvFactory.create(config)
+
+    /**
+      * 通过刚刚提到的"hello-service"名字新建一个远程Endpoint的引用（Ref），可以看做是stub，用于调用
+      */
     val endPointRef: RpcEndpointRef = rpcEnv.setupEndpointRef(RpcAddress("localhost", 52345), "hello-service")
+
     val future: Future[String] = endPointRef.ask[String](SayHi("neo"))
     future.onComplete {
       case scala.util.Success(value) => println(s"Got the result = $value")
@@ -52,7 +57,11 @@ object HelloworldClient {
     val config = RpcEnvClientConfig(rpcConf, "hello-client")
     val rpcEnv: RpcEnv = NettyRpcEnvFactory.create(config)
     val endPointRef: RpcEndpointRef = rpcEnv.setupEndpointRef(RpcAddress("localhost", 52345), "hello-service")
+    /**
+      * 通过同步的方式，在最新的Spark中askWithRetry实际已更名为askSync。
+      */
     val result = endPointRef.askWithRetry[String](SayBye("neo"))
+
     println(result)
   }
 }

@@ -13,7 +13,7 @@
 
     <modules>
         <module>kraps-rpc</module>
-        <!--<module>kraps-rpc-example</module>-->
+        <module>kraps-rpc-example</module>
     </modules>
 
     <properties>
@@ -21,9 +21,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <scala.version>2.11.8</scala.version>
-        <java.version>1.7</java.version>
-        <source.version>1.7</source.version>
-        <target.version>1.7</target.version>
+        <java.version>1.8</java.version>
+        <source.version>1.8</source.version>
+        <target.version>1.8</target.version>
         <junit.version>4.11</junit.version>
         <scala.version>2.11.8</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
@@ -82,7 +82,6 @@
             <version>3.2.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
@@ -111,7 +110,7 @@
             <dependency>
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-network-common_2.11</artifactId>
-                <version>2.1.0</version>
+                <version>2.1.1</version>
             </dependency>
             <dependency>
                 <groupId>de.ruedigermoeller</groupId>
